@@ -15,8 +15,32 @@
         margin-bottom: 10%;
         text-align: center;
       }
-      input {
-        width: 25rem;
+
+      #login {
+        font-size: 2rem;
+        color: rgb(255, 255, 255);
+        line-height: 1.5em;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        background-color: rgb(52, 152, 219);
+        height: 3rem;
+        width: 21rem;
+        margin-bottom: 1rem;
+      }
+      div > button {
+        font-size: 1rem;
+        color: rgb(255, 255, 255);
+        line-height: 2em;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        background-color: rgb(94, 94, 94);
+      }
+      .logintxt > input {
+        width: 21rem;
         height: 3rem;
         border-top-left-radius: 0.5rem;
         border-top-right-radius: 0.5rem;
@@ -24,35 +48,22 @@
         border-bottom-left-radius: 0.5rem;
         margin-bottom: 0.8rem;
       }
-      button {
-        font-size: 2rem;
-        width: 25.5rem;
-        color: rgb(255, 255, 255);
-        line-height: 2em;
-        border-top-left-radius: 0.5rem;
-        border-top-right-radius: 0.5rem;
-        border-bottom-right-radius: 0.5rem;
-        border-bottom-left-radius: 0.5rem;
-        background-color: rgb(52, 152, 219);
-      }
     </style>
+    <h1>Today's diary</h1>
   </head>
   <body>
-    <a
-      href="http://127.0.0.1:5500/project-diary/login.html"
-      style="text-decoration: none; color: black"
-    >
-      <h1>Today's diary</h1>
-    </a>
     <form>
-      <div><input type="text" placeholder="이름을 입력해주세요" /></div>
-      <div><input type="text" placeholder="아이디를 입력해주세요" /></div>
-      <div><input type="text" placeholder="패스워드를 입력해주세요" /></div>
-      <div><input type="text" placeholder="전화번호를 입력해주세요" /></div>
-      <div><input type="text" placeholder="취미를 입력해주세요" /></div>
-      <div><button>회원가입</button></div>
+      <div class="logintxt"><input type="text" placeholder="Username" /></div>
+      <div class="logintxt">
+        <input type="password" placeholder="Password" />
+      </div>
+      <button id="login">로그인</button>
+      <div>
+        <button id="register">회원 가입</button>
+        <button style="margin-left: 2rem" id="findid">아이디 찾기</button>
+        <button id="findpw">비밀번호 찾기</button>
+      </div>
     </form>
   </body>
-
-  <script src="join.js"></script>
+  <script src="/myapp_frontend/diary/login.js"></script>
 </html>

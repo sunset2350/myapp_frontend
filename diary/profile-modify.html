@@ -51,7 +51,7 @@
   </head>
   <body>
     <form>
-      <h2>회원 가입</h2>
+      <h2>프로필</h2>
       <table>
         <tr>
           <td>이름</td>
@@ -61,7 +61,10 @@
           <td>생년 월일</td>
         </tr>
         <td><input type="text" /></td>
-
+        <tr>
+          <td>취미</td>
+        </tr>
+        <td><input type="text" /></td>
         <tr>
           <td>전화번호</td>
         </tr>
@@ -69,14 +72,17 @@
       </table>
       <table>
         <tr>
+          <td style="width: 10rem"><button>수정</button></td>
+          <td><button>취소</button></td>
+        </tr>
+      </table>
+      <table>
+        <tr>
           <td>
-            <button id="commit" style="width: 15rem; font-size: 1.5rem">
-              등록
-            </button>
+            <button id="logout" style="width: 15rem">로그 아웃</button>
           </td>
         </tr>
       </table>
     </form>
   </body>
-  <script src="register.js"></script>
 </html>
