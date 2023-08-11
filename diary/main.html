@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Today's diary</title>
+    <h1>Today's diary</h1>
+    <style>
+      h1 {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        font-size: 4rem;
+        text-align: center;
+      }
+      form {
+        margin-bottom: 10%;
+      }
+      table {
+        width: 60rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #text {
+        width: 40rem;
+        height: 2rem;
+      }
+      #search {
+        background-color: rgb(224, 224, 224);
+        width: 60rem;
+        height: 4rem;
+        margin-bottom: 2rem;
+      }
+      #findtxt {
+        width: 40rem;
+      }
+      #searchbutton {
+        height: 2rem;
+        width: 3rem;
+        margin-left: 1rem;
+      }
+      #resetbutton {
+        height: 2rem;
+        width: 3.5rem;
+      }
+      #title {
+        font-size: 5rem;
+      }
+
+      tr > th {
+        font-size: auto;
+      }
+      select {
+        height: 2rem;
+        margin-left: 1rem;
+        width: 8rem;
+      }
+      div {
+        text-align: center;
+      }
+      #insert {
+        font-size: 1rem;
+        line-height: 1.5em;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        background-color: rgb(224, 224, 224);
+        height: 2rem;
+        width: 10rem;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="search">
+      <tr>
+        <td style="width: 2rem">
+          <select>
+            <option value="">선택 하세요</option>
+            <option value="writer">글쓴이</option>
+            <option value="title">제목</option>
+            <option value="date">날짜</option>
+          </select>
+        </td>
+        <td style="width: 10rem"><input type="search" id="text" st /></td>
+        <td style="width: 3rem"><button id="searchbutton">검색</button></td>
+        <td><button id="resetbutton">초기화</button></td>
+      </tr>
+    </table>
+    <form>
+      <table border="3">
+        <thead>
+          <tr>
+            <th style="width: 10%">번호</th>
+            <th style="width: 15%">글쓴이</th>
+            <th style="width: 50%">제목</th>
+            <th style="width: 25%">등록일</th>
+          </tr>
+        </thead>
+      </table>
+    </form>
+    <div>
+      <button id="insert">글쓰기</button>
+    </div>
+  </body>
+</html>
