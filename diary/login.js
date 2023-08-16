@@ -14,6 +14,7 @@ function findBypw(){
   window.location.href = "http://127.0.0.1:5500/myapp_frontend/diary/find-Pw.html";
 }
 
+
 // 로그인 버튼
 (() =>{
   const login = document.getElementById("login");

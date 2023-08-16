@@ -19,6 +19,7 @@
         width: 60rem;
         margin-left: auto;
         margin-right: auto;
+        text-align: center;
       }
       #text {
         width: 40rem;
@@ -87,7 +88,7 @@
       </tr>
     </table>
     <form>
-      <table border="3">
+      <table border="3" id="data-table">
         <thead>
           <tr>
             <th style="width: 10%">번호</th>
@@ -96,10 +97,13 @@
             <th style="width: 25%">등록일</th>
           </tr>
         </thead>
+        <tbody></tbody>
       </table>
     </form>
     <div>
       <button id="insert">글쓰기</button>
     </div>
+
+    <script src="main.js"></script>
   </body>
 </html>

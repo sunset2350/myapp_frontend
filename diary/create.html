@@ -41,7 +41,7 @@
   </head>
   <body>
     <a
-      href="http://127.0.0.1:5500/myapp_frontend/main.html"
+      href="http://127.0.0.1:5500/myapp_frontend/diary/main.html"
       style="text-decoration: none; color: black"
     >
       <h1>Today's diary</h1>
@@ -51,13 +51,17 @@
         <table>
           <tr></tr>
         </table>
-        <input type="text" placeholder="제목을 입력하세요" />
+        <input type="text" id="title" placeholder="제목을 입력하세요" />
       </div>
       <div>
-        <input type="password" placeholder="비밀번호를 입력하세요" />
+        <input
+          type="password"
+          id="password"
+          placeholder="비밀번호를 입력하세요"
+        />
       </div>
       <div>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <textarea name="" id="content" cols="30" rows="10"></textarea>
       </div>
       <div>
         <button id="back-button">목록</button>
