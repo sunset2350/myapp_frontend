@@ -36,12 +36,16 @@ function Home() {
       userPw : password.value,
       content : content.value
     })
-  })  
-  console.log(response);
-  const result = await response.json();
-  console.log(result)
-  alert("업로드 되었습니다.");
-  Home();
+  })
+  
+  if([400].includes(response.status)){
+    alert("값 미입력");
+  }
+  else {
+    alert("등록 완료");
+    Home();
+  }
+  
 
 
 });
