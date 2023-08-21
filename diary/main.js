@@ -1,6 +1,7 @@
 let currentPage = 0;
 let isLastPage = false;
 const PAGE_SIZE = 10;
+let userPW = "";
 let currentQuery = "";
 const nextbutton = document.getElementById("nextbutton");
 const prevbutton = document.getElementById("prevbutton");
@@ -8,6 +9,10 @@ const prevbutton = document.getElementById("prevbutton");
 
 function createContent() {
   window.location.href = "http://127.0.0.1:5500/myapp_frontend/diary/create.html";
+}
+
+function detailview() {
+  window.location.href = "http://127.0.0.1:5500/myapp_frontend/diary/Detail.html";
 }
 
 // async function fetchDataAndDisplay() {
@@ -50,27 +55,44 @@ function createContent() {
 
 // 전체 페이지
 async function getPagedList(page) {
-  let url = `http://localhost:8080/diarys/paging?page=${page}&size=${PAGE_SIZE}&`;
+  let url = `http://localhost:8080/diarys/paging?page=${page}&size=${PAGE_SIZE}`;
   
+
   const response = await fetch(url);
+  
   const result = await response.json();
+  
   const dataTableBody = document.querySelector('#data-table tbody');
   dataTableBody.innerHTML = '';
+  
   for (const [index, item] of result.content.entries()) {
+    console.log(item)
+    let detail = `http://localhost:8080/diarys/paging/no?no=${item.no}`
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${index + 1}</td>
       <td>${item.userId}</td>
-      <td>${item.title}</td>
+      <td>
+      <a href="${detail}" class="detail-link">
+       ${item.title}</a></td>
       <td>${new Date(item.createTime).toLocaleString()}</td>
-    `
-    dataTableBody.appendChild(row);
+    `;
 
+    row.querySelector('.detail-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = `detail.html?no=${item.no}`;
+
+    });
+
+    dataTableBody.appendChild(row);    
     currentPage = result.number;
     isLastPage = result.last;
     pagingActive();
   };
+
 }
+
+
 
 // 제목 검색
 async function gettitleList(page,query) {
@@ -80,16 +102,17 @@ async function gettitleList(page,query) {
   const result = await response.json();
   const dataTableBody = document.querySelector('#data-table tbody');
   dataTableBody.innerHTML = '';
-  for (const [index, item] of result.content.entries()) {
+  for (const [index, item] of result.content.entries()) {  
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${index + 1}</td>
       <td>${item.userId}</td>
       <td>${item.title}</td>
       <td>${new Date(item.createTime).toLocaleString()}</td>
+      
     `
     dataTableBody.appendChild(row);
-
+    
     currentPage = result.number;
     isLastPage = result.last;
     pagingActive();
@@ -192,10 +215,7 @@ function pagingActive() {
 })();
 
 // 상세보기
-async function getDetail(query,userPw) {
-  let url = `http://localhost:8080/diarys/paging/no?no=${query}&userPw=${userPw}`;
+(() => {
 
-  const response = await fetch(url);
-  const result = await response.json();
-  
-}
+
+})();
