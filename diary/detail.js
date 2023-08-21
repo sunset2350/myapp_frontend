@@ -9,12 +9,6 @@
   const result = await response.json()
   console.log(result)
   
-
-
-
-
-
-
   
   const row = document.createElement('tbody');
   const dataTable = document.querySelector("table");
@@ -27,15 +21,15 @@
     <tr>
     <th style="text-align:center; font-size:2rem;" colspan="2">${result.title}</th>
     </tr>
-  
     <tr>
-    <td colspan="2" class="ellipsis" style = "height:40rem;">${result.content}</td>
+    <td colspan="2" class="ellipsis" style = "height:40rem;"><div style="overflow:auto; width:90rem; height:40rem;">${result.content}</div></td>
     </tr>
   `;
   
   row.querySelectorAll('.ellipsis').forEach(cell => {
     cell.style.maxWidth = '200px';
     cell.style.overflow = 'hidden';
+    // cell.style.
   });
   
   dataTable.appendChild(row);
