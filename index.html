@@ -29,7 +29,7 @@
         width: 21rem;
         margin-bottom: 1rem;
       }
-      div > button {
+      button {
         font-size: 1rem;
         color: rgb(255, 255, 255);
         line-height: 2em;
@@ -38,6 +38,11 @@
         border-bottom-right-radius: 0.5rem;
         border-bottom-left-radius: 0.5rem;
         background-color: rgb(94, 94, 94);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: black;
       }
       .logintxt > input {
         width: 21rem;
@@ -64,6 +69,6 @@
         <button id="findpw">비밀번호 찾기</button>
       </div>
     </form>
-    <script src="/myapp_frontend/diary/login.js"></script>
+    <script src="/myapp_frontend/member_auth/login.js"></script>
   </body>
 </html>

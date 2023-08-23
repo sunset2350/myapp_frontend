@@ -20,7 +20,6 @@ function detailview() {
 //     const data = await response.json();
 //     const dataTableBody = document.querySelector('#data-table tbody');
 //     dataTableBody.innerHTML = '';
-//     console.log(typeof(data));
 //     data.forEach((item,index) => {
       
 //       const row = document.createElement('tr');
@@ -66,7 +65,6 @@ async function getPagedList(page) {
   dataTableBody.innerHTML = '';
   
   for (const [index, item] of result.content.entries()) {
-    console.log(item)
     let detail = `http://localhost:8080/diarys/paging/no?no=${item.no}`
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -123,7 +121,6 @@ async function gettitleList(page,query) {
 async function getcontentList(page,query) {
   let url = `http://localhost:8080/diarys/paging/searchByContent?page=${page}&size=${PAGE_SIZE}&content=${query}`;
   
-  console.log(url)
   const response = await fetch(url);
   const result = await response.json();
   const dataTableBody = document.querySelector('#data-table tbody');
@@ -211,11 +208,5 @@ function pagingActive() {
       alert("선택하여 주세요")
     }
   })
-
-})();
-
-// 상세보기
-(() => {
-
 
 })();

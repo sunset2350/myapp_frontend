@@ -6,6 +6,25 @@
     <title>Today's diary</title>
     <h1>Today's diary</h1>
     <style>
+      button {
+        cursor: pointer;
+      }
+      #prevbutton,
+      #nextbutton {
+        padding: 8px 20px;
+        font-size: 1rem;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+        transition: background-color 0.3s ease;
+      }
+      #prevbutton:hover,
+      #nextbutton:hover {
+        background-color: #2980b9;
+      }
+
       h1 {
         margin-top: 5%;
         margin-bottom: 5%;
@@ -68,6 +87,7 @@
         background-color: rgb(224, 224, 224);
         height: 2rem;
         width: 10rem;
+        cursor: pointer;
       }
     </style>
   </head>

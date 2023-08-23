@@ -3,15 +3,15 @@ function Home() {
 }
 
 function create(){
-  window.location.href = "http://127.0.0.1:5500/myapp_frontend/diary/register.html";
+  window.location.href = "http://127.0.0.1:5500/myapp_frontend/member_auth/register.html";
 }
 
 function findByid(){
-  window.location.href = "http://127.0.0.1:5500/myapp_frontend/diary/find-Id.html";
+  window.location.href = "http://127.0.0.1:5500/myapp_frontend/member_auth/find-Id.html";
 }
 
 function findBypw(){
-  window.location.href = "http://127.0.0.1:5500/myapp_frontend/diary/find-Pw.html";
+  window.location.href = "http://127.0.0.1:5500/myapp_frontend/member_auth/find-Pw.html";
 }
 
 
@@ -21,7 +21,7 @@ function findBypw(){
 
   login.addEventListener("click",(e) =>{
     e.preventDefault();
-    alert('안녕하세요');
+    
     Home();
 
   })
