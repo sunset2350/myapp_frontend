@@ -47,7 +47,7 @@ function login() {
   const password = document.getElementById("password");
   const birth = document.getElementById("birth");
   const phone = document.getElementById("phone");
-  const commit = document.querySelector("button");
+  const commit = document.getElementById("commit");
 
   commit.addEventListener("click", async(e) => {
     e.preventDefault();

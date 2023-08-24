@@ -1,6 +1,7 @@
 // 전체 페이지
 const currentURL = window.location.href;
 const cutpage = currentURL.split('=')[1];
+let url = `http://localhost:8080/diarys/paging/no?no=${cutpage}`;
 
 function Home() {
   window.location.href = "http://127.0.0.1:5500/myapp_frontend/diary/main.html";
@@ -8,7 +9,7 @@ function Home() {
 
 (async () =>{
   
-  let url = `http://localhost:8080/diarys/paging/no?no=${cutpage}`;
+  
   const response = await fetch(url);
   const result = await response.json()
   
@@ -63,22 +64,49 @@ function Home() {
   const modal = document.getElementById("modal");
   const modifyButton = document.getElementById("modify");
   const closeModalButton = document.getElementById("closeModalButton");
+  const confirmButton = document.getElementById("confirmButton");
+  const idTxt = document.getElementById("idTxt");
+  const contentTxt = document.getElementById("contentTxt")
 
-  // 모달 열기
   modifyButton.addEventListener("click", (e) => {
     e.preventDefault();
     modal.style.display = "block";
   });
 
-  // 모달 닫기
+  
   closeModalButton.addEventListener("click", () => {
     modal.style.display = "none";
   });
 
-  // 모달 내용 클릭 시 이벤트 중지 (모달을 클릭해도 닫히지 않도록)
+  
   modal.querySelector(".modal-content").addEventListener("click", (e) => {
     e.stopPropagation();
   });
+
+  confirmButton.addEventListener("click" , async (e) => {
+    e.preventDefault();
+
+    const modifiedTitle = idTxt.value;
+    const modifiedContent = contentTxt.value;
+
+    const response = await fetch (
+      `http://localhost:8080/diarys/${cutpage}`,
+      {
+        method : "PUT",
+        headers : {
+          "content-type" : "application/json"
+        },
+        body : JSON.stringify({
+          title : modifiedTitle,
+          content : modifiedContent
+        })
+      }
+    )
+    alert('수정 완료')
+    Home()
+  })
+
+
 })();
 
 

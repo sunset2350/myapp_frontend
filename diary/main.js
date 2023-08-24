@@ -100,17 +100,25 @@ async function gettitleList(page,query) {
   const result = await response.json();
   const dataTableBody = document.querySelector('#data-table tbody');
   dataTableBody.innerHTML = '';
-  for (const [index, item] of result.content.entries()) {  
+  for (const [index, item] of result.content.entries()) {
+    let detail = `http://localhost:8080/diarys/paging/no?no=${item.no}`
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${index + 1}</td>
       <td>${item.userId}</td>
-      <td>${item.title}</td>
+      <td>
+      <a href="${detail}" class="detail-link">
+       ${item.title}</a></td>
       <td>${new Date(item.createTime).toLocaleString()}</td>
-      
-    `
-    dataTableBody.appendChild(row);
-    
+    `;
+
+    row.querySelector('.detail-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = `detail.html?no=${item.no}`;
+
+    });
+
+    dataTableBody.appendChild(row);    
     currentPage = result.number;
     isLastPage = result.last;
     pagingActive();
@@ -126,15 +134,24 @@ async function getcontentList(page,query) {
   const dataTableBody = document.querySelector('#data-table tbody');
   dataTableBody.innerHTML = '';
   for (const [index, item] of result.content.entries()) {
+    let detail = `http://localhost:8080/diarys/paging/no?no=${item.no}`
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${index + 1}</td>
       <td>${item.userId}</td>
-      <td>${item.title}</td>
+      <td>
+      <a href="${detail}" class="detail-link">
+       ${item.title}</a></td>
       <td>${new Date(item.createTime).toLocaleString()}</td>
-    `
-    dataTableBody.appendChild(row);
+    `;
 
+    row.querySelector('.detail-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = `detail.html?no=${item.no}`;
+
+    });
+
+    dataTableBody.appendChild(row);    
     currentPage = result.number;
     isLastPage = result.last;
     pagingActive();

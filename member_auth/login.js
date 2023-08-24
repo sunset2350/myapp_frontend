@@ -30,31 +30,76 @@ function findBypw(){
 
 // 회원 가입 버튼
 (() =>{
-  const register = document.getElementById("register");
+  const registerBtn = document.getElementById("register");
+  const registerModal = document.getElementById("registerModal");
+  const name = document.getElementById("name");
+  const id = document.getElementById("id");
+  const password = document.getElementById("password");
+  const birth = document.getElementById("birth");
+  const phone = document.getElementById("phone");
+  const commit = document.getElementById("commit");
 
-  register.addEventListener("click",(e) =>{
+  registerBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    create();
-  })
+    registerModal.style.display = "block";
+  });
 
+  commit.addEventListener("click", async(e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:8080/profiles", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        userId: id.value,
+        userPw: password.value,
+        userName: name.value,
+        userPhone: phone.value,
+        userBirth: birth.value
+      })
+    });
+    
+    if([500].includes(response.status)){
+      alert("아이디가 존재합니다.")
+    } else if([400].includes(response.status)){
+      alert("값 미입력");
+    }
+      else {
+      alert("회원가입 완료");
+      
+    }
+  });
 })();
 
 // 아이디 찾기 버튼
 (() => {
-  const findid = document.getElementById("findid");
+  const findIdBtn = document.getElementById("findid");
+  const findIdModal = document.getElementById("findIdModal");
 
-  findid.addEventListener("click" , (e) => {
+  findIdBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    findByid()
-  })
+    findIdModal.style.display = "block";
+  });
 })();
 
 // 비밀번호 찾기 버튼
 (() => {
-  const findpw = document.getElementById("findpw");
+  const findPwBtn = document.getElementById("findpw");
+  const findPwModal = document.getElementById("findPwModal");
 
-  findpw.addEventListener("click" , (e) => {
+  findPwBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    findBypw()
-  })
+    findPwModal.style.display = "block";
+  });
 })();
+
+// 종료
+const closeButtons = document.querySelectorAll(".modal .close");
+closeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    registerModal.style.display = "none";
+    findIdModal.style.display = "none";
+    findPwModal.style.display = "none";
+  });
+});
