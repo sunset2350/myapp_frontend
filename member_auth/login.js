@@ -1,31 +1,79 @@
-function Home() {
-  window.location.href = "http://127.0.0.1:5500/myapp_frontend/diary/main.html";
-}
+// function Home() {
+//   window.location.href = "http://127.0.0.1:5500/myapp_frontend/diary/main.html";
+// }
 
-function create(){
-  window.location.href = "http://127.0.0.1:5500/myapp_frontend/member_auth/register.html";
-}
+// function create(){
+//   window.location.href = "http://127.0.0.1:5500/myapp_frontend/member_auth/register.html";
+// }
 
-function findByid(){
-  window.location.href = "http://127.0.0.1:5500/myapp_frontend/member_auth/find-Id.html";
-}
+// function findByid(){
+//   window.location.href = "http://127.0.0.1:5500/myapp_frontend/member_auth/find-Id.html";
+// }
 
-function findBypw(){
-  window.location.href = "http://127.0.0.1:5500/myapp_frontend/member_auth/find-Pw.html";
-}
+// function findBypw(){
+//   window.location.href = "http://127.0.0.1:5500/myapp_frontend/member_auth/find-Pw.html";
+// }
+
+
+
+
 
 
 // 로그인 버튼
-(() =>{
-  const login = document.getElementById("login");
 
-  login.addEventListener("click",(e) =>{
+const params = new URLSearchParams(window.location.search);
+const login = document.getElementById("login");
+
+
+
+if (params.get("err")) {
+  document.querySelector("#err").innerHTML =
+    params.get("err");
+  history.replaceState(
+    null,
+    null,
+    "http://127.0.0.1:5500/myapp_frontend/index.html"
+  );
+}
+  
+    login.addEventListener("click", async (e) =>{
     e.preventDefault();
     
-    Home();
+    
+    if (!document.forms[0].querySelectorAll("input")[0].value){
+      alert("사용자 ID 입력해주세요.")
+      return;
+    }
+    if (!document.forms[0].querySelectorAll("input")[1].value){
+      alert("패스워드 입력해주세요");
+      return;
+    }
+    document.forms[0].submit();
+  });
 
-  })
+// 쿠키 값 가져오기 함수
+function getCookie(name) {
+  let matches = document.cookie.match(
+    new RegExp(
+      "(?:^|; )" +
+        name.replace(
+          /([\.$?*|{}\(\)\[\]\\\/\+^])/g,
+          "\\$1"
+        ) +
+        "=([^;]*)"
+    )
+  );
   
+  
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+(() => {
+  const token = getCookie("token");
+  console.log(token)
+  if (token) {
+
+    window.location.href = `http://localhost:5500/myapp_frontend/diary/main.html`;
+  };
 })();
 
 // 회원 가입 버튼

@@ -1,25 +1,66 @@
+
+function getCookie(name) {
+  let matches = document.cookie.match(
+    new RegExp(
+      "(?:^|; )" +
+        name.replace(
+          /([\.$?*|{}\(\)\[\]\\\/\+^])/g,
+          "\\$1"
+        ) +
+        "=([^;]*)"
+    )
+  );
+  return matches
+    ? decodeURIComponent(matches[1])
+    : undefined;
+}
+
+
+(() => {
+  const token = getCookie("token");
+  if (!token) {
+    window.location.href = "http://localhost:5500/myapp_frontend/index.html";
+  }
+  
+})();
+
+
 // 전체 페이지
 const currentURL = window.location.href;
+console.log(currentURL);
 const cutpage = currentURL.split('=')[1];
-let url = `http://localhost:8080/diarys/paging/no?no=${cutpage}`;
+let url = `http://localhost:8080/diarys/paging/ownerNo?ownerNo=${cutpage}`;
 
 function Home() {
-  window.location.href = "http://127.0.0.1:5500/myapp_frontend/diary/main.html";
+  window.location.href = "http://localhost:5500/myapp_frontend/diary/main.html";
 }
 
 (async () =>{
   
-  
-  const response = await fetch(url);
-  const result = await response.json()
-  
+  const response = await fetch(url,
+    {
+      headers: {
+        Authorization: `Bearer ${getCookie(
+          "token"
+        )}`,
+      },
+    });
+
+    if ([401, 403].includes(response.status)) {
+      alert("인증처리가 되지 않았습니다.");
+      window.location.href = "/index.html";
+
+    }
   
   const row = document.createElement('tbody');
   const dataTable = document.querySelector("table");
   
+  const result = await response.json();
+  console.log(result)
+  console.log(result.content)
   row.innerHTML = `
     <tr>
-      <td>${result.userId}</td>
+      <td>${result.ownerNo}</td>
       <td style="text-align:right;">${new Date(result.createTime).toLocaleString()}</br></br></td>
     </tr>
     <tr>
@@ -88,20 +129,24 @@ function Home() {
 
     const modifiedTitle = idTxt.value;
     const modifiedContent = contentTxt.value;
+    
 
     const response = await fetch (
       `http://localhost:8080/diarys/${cutpage}`,
       {
         method : "PUT",
         headers : {
-          "content-type" : "application/json"
+          "content-type" : 
+          "application/json",
+          Authorization:`Bearer ${getCookie(
+            "token"
+          )}`,
         },
         body : JSON.stringify({
           title : modifiedTitle,
           content : modifiedContent
         })
-      }
-    )
+      })
     alert('수정 완료')
     Home()
   })
@@ -117,16 +162,20 @@ function Home() {
 const deletebutton = document.getElementById('delete')
 deletebutton.addEventListener("click", async (e) =>{
   
+  
   e.preventDefault();
   await fetch(
     `http://localhost:8080/diarys/${cutpage}`,
     {
       method : "DELETE",
-      headers : {
-        "content-type" : "application/json"
-      }
-    }
-  )
+      headers: {
+        "content-type":
+          "application/json",
+        Authorization: `Bearer ${getCookie(
+          "token"
+        )}`,
+      },
+    })
   alert("삭제되었습니다.")
   Home();
 })
