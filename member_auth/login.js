@@ -94,7 +94,7 @@ function getCookie(name) {
 
   commit.addEventListener("click", async(e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:8080/profiles", {
+    const response = await fetch("http://localhost:8080/auth/signup", {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -115,7 +115,12 @@ function getCookie(name) {
     }
       else {
       alert("회원가입 완료");
-      
+    id.value = "";
+    password.value = "";
+    name.value = "";
+    phone.value = "";
+    birth.value = "";
+    registerModal.style.display = "none";
     }
   });
 })();
