@@ -27,13 +27,18 @@ function getCookie(name) {
 
 // 전체 페이지
 const currentURL = window.location.href;
-console.log(currentURL);
 const cutpage = currentURL.split('=')[1];
 let url = `http://localhost:8080/diarys/paging/ownerNo?ownerNo=${cutpage}`;
 
 function Home() {
   window.location.href = "http://localhost:5500/myapp_frontend/diary/main.html";
 }
+
+function back() {
+  let currentURL = window.location.href;
+  window.location.href = currentURL
+}
+
 
 (async () =>{
   
@@ -56,8 +61,6 @@ function Home() {
   const dataTable = document.querySelector("table");
   
   const result = await response.json();
-  console.log(result)
-  console.log(result.content)
   row.innerHTML = `
     <tr>
       <td>${result.ownerNo}</td>
@@ -109,9 +112,22 @@ function Home() {
   const idTxt = document.getElementById("idTxt");
   const contentTxt = document.getElementById("contentTxt")
 
-  modifyButton.addEventListener("click", (e) => {
+  modifyButton.addEventListener("click", async (e) => {
     e.preventDefault();
     modal.style.display = "block";
+    console.log(url)
+    const response = await fetch(url,
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie(
+            "token"
+          )}`,
+        },
+      });
+   
+    const result = await response.json();
+    idTxt.value = result.title;
+    contentTxt.value = result.content;
   });
 
   
@@ -129,8 +145,12 @@ function Home() {
 
     const modifiedTitle = idTxt.value;
     const modifiedContent = contentTxt.value;
-    
-
+    if(!idTxt.value){
+      alert("제목을 입력해주세요")
+    } else if(!contentTxt.value){
+      alert("내용을 입력해주세요")
+    } else {
+  
     const response = await fetch (
       `http://localhost:8080/diarys/${cutpage}`,
       {
@@ -148,7 +168,8 @@ function Home() {
         })
       })
     alert('수정 완료')
-    Home()
+    back();
+    }
   })
 
 

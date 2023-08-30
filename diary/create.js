@@ -60,7 +60,6 @@ function getCookie(name) {
     },
     body : JSON.stringify({
       title : title.value,
-      // userPw : password.value,
       content : content.value
     })
   })

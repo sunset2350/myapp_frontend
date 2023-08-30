@@ -119,7 +119,7 @@
         <div id="registerModal" class="modal">
           <div class="modal-content" style="height: 70%">
             <span class="close">&times;</span>
-            <h2>회원 가입</h2>
+            <h2 style="margin-bottom: 4rem; font-size: 2rem">회원 가입</h2>
             <table>
               <tr style="text-align: center">
                 <td>이름</td>
@@ -128,11 +128,17 @@
               <tr>
                 <td>아이디</td>
               </tr>
-              <td><input id="id" type="text" /></td>
+              <td>
+                <input id="id" type="text" />
+                <p id="errid" style="color: red"></p>
+              </td>
               <tr>
                 <td>패스워드</td>
               </tr>
-              <td><input id="password" type="password" /></td>
+              <td>
+                <input id="password" type="password" />
+                <p id="errorpw" style="color: red"></p>
+              </td>
               <tr>
                 <td>생년 월일</td>
               </tr>
@@ -162,11 +168,11 @@
               <tr>
                 <td>이름</td>
               </tr>
-              <td><input type="text" /></td>
+              <td><input type="text" id="findidname" /></td>
               <tr>
                 <td>생년 월일</td>
               </tr>
-              <td><input type="text" /></td>
+              <td><input type="text" id="findidbirth" /></td>
             </table>
             <table>
               <tr>
@@ -195,15 +201,15 @@
               <tr>
                 <td>이름</td>
               </tr>
-              <td><input type="text" /></td>
+              <td><input type="text" id="findpwname" /></td>
               <tr>
-                <td>생년 월일</td>
+                <td>아이디</td>
               </tr>
-              <td><input type="text" /></td>
+              <td><input type="text" id="findpwid" /></td>
               <tr>
                 <td>전화번호</td>
               </tr>
-              <td><input type="text" /></td>
+              <td><input type="text" id="findpwphone" /></td>
             </table>
             <table>
               <tr>
@@ -218,6 +224,40 @@
               </tr>
             </table>
           </div>
+        </div>
+      </div>
+      <div id="newpasswordModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2 style="margin-bottom: 3rem">아이디 찾기</h2>
+          <table>
+            <tr>
+              <td>새로운 비밀번호</td>
+            </tr>
+            <td>
+              <input type="password" id="newpassword" />
+              <p id="newpwerr" style="color: red"></p>
+            </td>
+            <tr>
+              <td>비밀번호 확인</td>
+            </tr>
+            <td>
+              <input type="password" id="checkpassword" />
+              <p id="checknewpwerr" style="color: red"></p>
+            </td>
+          </table>
+          <table>
+            <tr>
+              <td>
+                <button
+                  id="newpasswordBt"
+                  style="width: 15rem; font-size: 1.5rem; margin-bottom: 10rem"
+                >
+                  변경하기
+                </button>
+              </td>
+            </tr>
+          </table>
         </div>
       </div>
     </form>

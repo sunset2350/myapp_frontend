@@ -67,7 +67,6 @@ function getCookie(name) {
 
     }
     const result = await response.json();
-    console.log(result)
 
     const dataTableBody = document.querySelector('#data-table tbody');
     dataTableBody.innerHTML = '';

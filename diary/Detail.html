@@ -49,12 +49,12 @@
 
       .modal-content {
         position: absolute;
-        top: 50%;
+        top: 60%;
         left: 50%;
-        transform: translate(-50%, -50%);
-        width: 70%; /* 모달 창 너비 설정 */
+        transform: translate(-50%, -70%);
+        width: 60rem; /* 모달 창 너비 설정 */
         max-width: 100%; /* 너비가 화면 크기를 넘지 않도록 설정 */
-        height: 70%; /* 모달 창 높이 설정 */
+        height: 55rem; /* 모달 창 높이 설정 */
         background-color: white;
         padding: 2rem;
         border-radius: 5px;
@@ -88,18 +88,18 @@
         <div id="modal" class="modal">
           <div class="modal-content">
             <span class="close" id="closeModalButton">&times;</span>
-            <h1 style="text-align: top">변경</h1>
-            <p style="font-size: 3rem">
-              <input type="text" id="idTxt" placeholder="제목을 입력하세요"
-              style="width: 50%; height:5rem; margin-bottom: 1rem;" / ">
+
+            <p style="font-size: 1rem">
+              <input type="text" id="idTxt" value ="" style="width: 51rem;
+              height:5rem; margin-bottom: 1rem;" / ">
             </p>
             <p>
               <textarea
                 name=""
                 id="contentTxt"
-                cols="110"
-                rows="20"
-                placeholder="변경하실 내용을 입력하세요"
+                cols="120%"
+                rows="42%"
+                value=""
               ></textarea>
             </p>
             <form id="editForm">
