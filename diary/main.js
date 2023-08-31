@@ -62,8 +62,7 @@ function getCookie(name) {
     });
 
     if ([401, 403].includes(response.status)) {
-      alert("인증처리가 되지 않았습니다.");
-      window.location.href = "/index.html";
+      window.location.href = "http://127.0.0.1:5500/index.html";
 
     }
     const result = await response.json();
@@ -238,6 +237,7 @@ const response = await fetch(url,
     const title = document.getElementById("title");
     const select = document.querySelector("select");
     const selectvalue = ""
+
   
     
     
@@ -270,4 +270,4 @@ const response = await fetch(url,
     })
   
   })();
-  
+

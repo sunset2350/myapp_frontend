@@ -70,7 +70,7 @@ function getCookie(name) {
   }
   else {
     alert("등록 완료");
-    // Home();
+    Home();
   }
   
 

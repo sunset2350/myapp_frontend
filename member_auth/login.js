@@ -56,7 +56,6 @@ function getCookie(name) {
 }
 (() => {
   const token = getCookie("token");
-  console.log(token)
   if (token) {
 
     window.location.href = `http://localhost:5500/myapp_frontend/diary/main.html`;

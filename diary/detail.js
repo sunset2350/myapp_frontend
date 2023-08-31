@@ -63,8 +63,8 @@ function back() {
   const result = await response.json();
   row.innerHTML = `
     <tr>
-      <td>${result.ownerNo}</td>
-      <td style="text-align:right;">${new Date(result.createTime).toLocaleString()}</br></br></td>
+      <td>${new Date(result.createTime).toLocaleString()}</td>
+      <td style="text-align:right;">${result.name}</br></br></td>
     </tr>
     <tr>
     <th style="text-align:center; font-size:2rem; " colspan="2">${result.title}</br></br></th>
