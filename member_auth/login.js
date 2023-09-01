@@ -13,7 +13,8 @@ function patternid(id){
 
 const params = new URLSearchParams(window.location.search);
 const login = document.getElementById("login");
-
+const userId = document.forms[0].querySelectorAll("input")[0]
+const userPw = document.forms[0].querySelectorAll("input")[1]
 if (params.get("err")) {
   document.querySelector("#err").innerHTML =
     params.get("err");
@@ -26,17 +27,28 @@ if (params.get("err")) {
   
     login.addEventListener("click", async (e) =>{
     e.preventDefault();
-    if (!document.forms[0].querySelectorAll("input")[0].value){
+    if (!userId.value){
       alert("사용자 ID 입력해주세요.")
       return;
     }
-    if (!document.forms[0].querySelectorAll("input")[1].value){
+    if (!userPw.value){
       alert("패스워드 입력해주세요");
       return;
     }
+    let id = userId.value;
+    let url = `http://localhost:8080/profiles/${id}`;
+    const response = await fetch(url);
+    const result = await response.json();
 
-    document.forms[0].submit();
+
+    if (result === null || result.userPw !== userPw.value){
+      alert(" 아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.");
+    }
+    else {
+      document.forms[0].submit();
+    }
   });
+
 
 // 쿠키 값 가져오기 함수
 function getCookie(name) {
@@ -97,6 +109,8 @@ function getCookie(name) {
       errorpw.textContent = "";
     }
   });
+
+
   
   // 아이디 정규식 체크
   idInput.addEventListener("blur",function(){
@@ -107,6 +121,19 @@ function getCookie(name) {
       errid.textContent =
       "ID는 영문 + 숫자만 가능합니다."
     } else {
+      errid.textContent = "";
+    }
+  })
+  idInput.addEventListener("blur", async function(){
+    let id = idInput.value;
+    let url = `http://localhost:8080/profiles/${id}`;
+    const response = await fetch(url);
+
+    if(response.status === 200) {
+      errid.textContent =
+      "이미 사용중인 아이디 입니다."
+    }
+    else {
       errid.textContent = "";
     }
   })
@@ -261,13 +288,20 @@ function getCookie(name) {
 
   findpwcommit.addEventListener("click", async(e) =>{
     e.preventDefault();
-    if(!findpwname.value){
-      alert("이름을 입력해주세요")
-    } else if (!findpwid.value){
-      alert("아이디를 입력해주세요")
-    } else if (!findpwphone.value){
-      alert("전화번호를 입력해주세요")
-    }
+
+    
+      let id = findpwid.value;
+      let url = `http://localhost:8080/profiles/${id}`;
+      const response = await fetch(url);
+      
+      const result = await response.json();
+      if (result === null){
+        alert("입력하신 아이디를 찾을 수 없습니다.")
+      } else if(result.name !== findpwname.value) {
+         alert("입력하신 이름을 찾을 수 없습니다")
+      } else if(result.userPhone !== findpwphone.value){
+        alert("입력하신 전화번호의 정보를 찾을 수 없습니다.")
+      }
     
     else {
       findPwModal.style.display = "none";
@@ -307,6 +341,7 @@ function getCookie(name) {
       })
     }
 })
+
 
 
 })();
