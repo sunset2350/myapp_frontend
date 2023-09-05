@@ -23,10 +23,10 @@ function getCookie(name) {
   const prevbutton = document.getElementById("prevbutton");
   
   function createContent() {
-    window.location.href = "http://localhost:5500/myapp_frontend/diary/create.html";
+    window.location.href = "http://localhost:5500/myapp_frontend/myapp_frontend/diary/create.html";
   }
   function detailview() {
-    window.location.href = "http://localhost:5500/myapp_frontend/diary/Detail.html";
+    window.location.href = "http://localhost:5500/myapp_frontend/myapp_frontend/diary/Detail.html";
   }
 
   (() => {

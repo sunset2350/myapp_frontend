@@ -18,7 +18,7 @@ function getCookie(name) {
 (() => {
   const token = getCookie("token");
   if (!token) {
-    window.location.href = "http://localhost:5500/myapp_frontend/index.html";
+    window.location.href = "http://localhost:5500/myapp_frontend/myapp_frontend/index.html";
   }
   
 })();

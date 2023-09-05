@@ -4,14 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Today's diary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Nanum Pen Script", cursive;
         margin: 0 auto;
         padding: 0;
         background-image: url(older/background.jpg);
+        font-size: 1.6rem;
       }
       h1 {
+        font-family: "Nanum Pen Script", cursive;
         margin-top: 5%;
         margin-bottom: 3%;
         font-size: 4rem;
@@ -23,7 +31,7 @@
       }
       #login,
       button {
-        font-size: 1rem;
+        font-size: 20rem;
         color: rgb(255, 255, 255);
         line-height: 2em;
         border-radius: 0.5rem;
@@ -31,6 +39,7 @@
         transition: background-color 0.3s ease;
       }
       #login {
+        font-family: "Nanum Pen Script", cursive;
         font-size: 1.5rem;
         background-color: rgb(52, 152, 219);
         height: 3rem;
@@ -38,7 +47,8 @@
         margin-bottom: 1rem;
       }
       button {
-        font-size: 1rem;
+        font-family: "Nanum Pen Script", cursive;
+        font-size: 1.6rem;
         background-color: rgb(94, 94, 94);
       }
       button:hover {
@@ -115,10 +125,10 @@
       </div>
       <button id="login">로그인</button>
 
-      <div>
+      <div class="registerbutton">
         <button id="register">회원 가입</button>
         <div id="registerModal" class="modal">
-          <div class="modal-content" style="height: 70%">
+          <div class="modal-content" style="height: 85%">
             <span class="close">&times;</span>
             <h2 style="margin-bottom: 4rem; font-size: 2rem">회원 가입</h2>
             <table>
@@ -152,8 +162,11 @@
             <table>
               <tr>
                 <td>
-                  <button id="commit" style="width: 15rem; font-size: 1.5rem">
+                  <button id="commit" style="width: 10rem; font-size: 1.5rem">
                     등록
+                  </button>
+                  <button id="cancel" style="width: 10rem; font-size: 1.5rem">
+                    취소
                   </button>
                 </td>
               </tr>
@@ -230,7 +243,7 @@
       <div id="newpasswordModal" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>
-          <h2 style="margin-bottom: 3rem">아이디 찾기</h2>
+          <h2 style="margin-bottom: 3rem">비밀번호 찾기</h2>
           <table>
             <tr>
               <td>새로운 비밀번호</td>

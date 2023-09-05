@@ -19,7 +19,7 @@ function getCookie(name) {
 (() => {
   const token = getCookie("token");
   if (!token) {
-    window.location.href = "http://localhost:5500/myapp_frontend/index.html";
+    window.location.href = "http://localhost:5500/myapp_frontend/myapp_frontend/index.html";
   }
   
 })();
@@ -31,7 +31,7 @@ const cutpage = currentURL.split('=')[1];
 let url = `http://localhost:8080/diarys/paging/ownerNo?ownerNo=${cutpage}`;
 
 function Home() {
-  window.location.href = "http://localhost:5500/myapp_frontend/diary/main.html";
+  window.location.href = "http://localhost:5500/myapp_frontend/myapp_frontend/diary/main.html";
 }
 
 function back() {
@@ -58,16 +58,15 @@ function back() {
     }
   
   const row = document.createElement('tbody');
-  const dataTable = document.querySelector("table");
+  const dataTable = document.getElementById("first-table");
   
   const result = await response.json();
   row.innerHTML = `
     <tr>
-      <td>${new Date(result.createTime).toLocaleString()}</td>
-      <td style="text-align:right;">${result.name}</br></br></td>
+      <td style= "text-align:right">${new Date(result.createTime).toLocaleString()}<br /><br></td>
     </tr>
     <tr>
-    <th style="text-align:center; font-size:2rem; " colspan="2">${result.title}</br></br></th>
+    <th style="text-align:center; font-size:2rem; " colspan="2">${result.title}<br /><br></th>
     </tr>
     <tr>
     <td colspan="2" class="ellipsis" style = "height:40rem; border: 1px solid #444444;">
@@ -83,6 +82,7 @@ function back() {
   
   dataTable.appendChild(row);
 })();
+
 
 
 // 목록
@@ -111,6 +111,8 @@ function back() {
   const confirmButton = document.getElementById("confirmButton");
   const idTxt = document.getElementById("idTxt");
   const contentTxt = document.getElementById("contentTxt")
+  const modalBackdrop = document.querySelector('.modal-backdrop');
+  
 
   modifyButton.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -175,9 +177,6 @@ function back() {
 
 })();
 
-
-
-
 // 삭제
 (() =>{
 const deletebutton = document.getElementById('delete')
@@ -202,4 +201,42 @@ deletebutton.addEventListener("click", async (e) =>{
 })
 
 })();
+
+(() => {
+  const weather = document.getElementById("weather");
+  const API_KEY = '9f159f287c88748eec796ba68cdf20c7';
+
+  const updateWeather = () => {
+    navigator.geolocation.getCurrentPosition(success);
+  };
+
+  const success = (position) => {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    getWeather(latitude, longitude);
+  };
+
+  const getWeather = (lat, lon) => {
+    const iconSection = document.querySelector('.icon');
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        const icon = json.weather[0].icon;
+        const iconURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        iconSection.setAttribute('src', iconURL);
+        console.log(json);
+        console.log(iconURL);
+      });
+  };
+
+  updateWeather();
+  
+})();
+
+
 

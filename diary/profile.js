@@ -32,7 +32,6 @@
       }
 
       const result = await response.json();
-      console.log(result)
       modifyid.value = result.userId;
       modifyname.value = result.userName;
       modifybirth.value = result.userBirth;
@@ -103,7 +102,7 @@ function deleteCookie(name) {
   const token = getCookie("token");
   
   if (!token) {
-    window.location.href = "http://localhost:5500/myapp_frontend/index.html";
+    window.location.href = "http://127.0.0.1:5500/myapp_frontend/myapp_frontend/index.html";
   }
   
 })();
@@ -113,6 +112,6 @@ function deleteCookie(name) {
     clicklogout.addEventListener("click" , (e) =>{
       e.preventDefault();
       deleteCookie("token")
-      window.location.href = "http://localhost:5500/myapp_frontend/index.html";
+      window.location.href = "http://127.0.0.1:5500/myapp_frontend/myapp_frontend/index.html";
     })
   })();

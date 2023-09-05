@@ -21,7 +21,7 @@ if (params.get("err")) {
   history.replaceState(
     null,
     null,
-    "http://127.0.0.1:5500/myapp_frontend/index.html"
+    "http://127.0.0.1:5500/myapp_frontend/myapp_frontend/index.html"
   );
 }
   
@@ -40,13 +40,15 @@ if (params.get("err")) {
     const response = await fetch(url);
     const result = await response.json();
 
-
-    if (result === null || result.userPw !== userPw.value){
-      alert(" 아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.");
-    }
-    else {
-      document.forms[0].submit();
-    }
+    document.forms[0].submit();
+    // if (result === null || result.userPw !== userPw.value){
+    //   console.log(result)
+    //   console.log(result.userPw)
+    //   alert(" 아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.");
+    // }
+    // else {
+    //   document.forms[0].submit();
+    // }
   });
 
 
@@ -70,7 +72,7 @@ function getCookie(name) {
   const token = getCookie("token");
   if (token) {
 
-    window.location.href = `http://localhost:5500/myapp_frontend/diary/main.html`;
+    window.location.href = `http://localhost:5500/myapp_frontend/myapp_frontend/diary/main.html`;
   };
 })();
 
@@ -84,7 +86,7 @@ function getCookie(name) {
   const birth = document.getElementById("birth");
   const phone = document.getElementById("phone");
   const commit = document.getElementById("commit");
-
+  const cancel = document.getElementById("cancel");
 
   const idInput = document.getElementById("id")
   const errid = document.getElementById("errid")
@@ -128,8 +130,9 @@ function getCookie(name) {
     let id = idInput.value;
     let url = `http://localhost:8080/profiles/${id}`;
     const response = await fetch(url);
+    const result = await response.json();
 
-    if(response.status === 200) {
+    if(result.userId === id) {
       errid.textContent =
       "이미 사용중인 아이디 입니다."
     }
@@ -194,6 +197,15 @@ function getCookie(name) {
     }
   }
   });
+  cancel.addEventListener("click" , (e) => {
+    e.preventDefault();
+    id.value = "";
+    password.value = "";
+    name.value = "";
+    phone.value = "";
+    birth.value = "";
+    registerModal.style.display = "none";
+  })
 })();
 
 // 아이디 찾기 버튼
@@ -297,7 +309,10 @@ function getCookie(name) {
       const result = await response.json();
       if (result === null){
         alert("입력하신 아이디를 찾을 수 없습니다.")
-      } else if(result.name !== findpwname.value) {
+      } else if(result.userName !== findpwname.value) {
+        console.log(result)
+        console.log(result.userName)
+        console.log(findpwname.value)
          alert("입력하신 이름을 찾을 수 없습니다")
       } else if(result.userPhone !== findpwphone.value){
         alert("입력하신 전화번호의 정보를 찾을 수 없습니다.")

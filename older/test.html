@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Today's diary</title>
+
+    <style>
+      /* ... 기존 스타일 ... */
+
+      /* 모달 스타일 */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+      }
+
+      .modal-title {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      href="http://localhost:5500/myapp_frontend/diary/main.html"
+      style="text-decoration: none; color: black"
+    >
+      <h1>Today's diary</h1>
+    </a>
+
+    <!-- "글쓰기" 버튼을 클릭하면 모달 열림 -->
+    <div>
+      <button id="insert">글쓰기</button>
+    </div>
+
+    <!-- 모달 -->
+    <div id="createmyModal" class="modal">
+      <div class="modal-content">
+        <form>
+          <h2 class="modal-title">프로필</h2>
+          <table>
+            <tr>
+              <td>아이디</td>
+            </tr>
+            <td><input type="text" disabled value="" id="modifyid" /></td>
+            <!-- 다른 입력 필드들 ... -->
+          </table>
+
+          <button
+            type="submit"
+            id="saveModal"
+            style="margin-top: 3rem; margin-right: 10rem"
+          >
+            저장
+          </button>
+          <button type="button" id="closeModal">취소</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- JavaScript 코드를 추가 -->
+    <script src="create.js"></script>
+    <script>
+      // "글쓰기" 버튼 클릭 시 모달 열기
+      const insertButton = document.getElementById("insert");
+      const modal = document.getElementById("createmyModal");
+
+      insertButton.addEventListener("click", () => {
+        modal.style.display = "block";
+      });
+
+      // 모달 닫기
+      const closeModalButton = document.getElementById("closeModal");
+      closeModalButton.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      // 모달 외부 클릭 시 모달 닫기
+      window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
